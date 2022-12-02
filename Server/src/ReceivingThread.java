@@ -18,7 +18,7 @@ public class ReceivingThread extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             while(true) {
-                System.out.println(reader.readLine());
+                System.out.println(reader.readLine() + "\n");
             }
         } catch (Exception e) {
             e.printStackTrace();

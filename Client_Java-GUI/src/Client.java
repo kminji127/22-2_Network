@@ -60,7 +60,7 @@ public class Client extends JFrame {
                     writer = new PrintWriter(output, true);
 
                     if (connection == false) {
-                        writer.println("[" + nickname + " 님이 입장했습니다 ]");
+                        writer.println("[ " + nickname + " 님이 입장했습니다 ]");
                         connection = true;
                     }
 
@@ -85,12 +85,12 @@ public class Client extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == chattingInput || e.getSource() == submitButton) {
                 sendMessage = chattingInput.getText();
-                writer.println(nickname + "\n" + sendMessage + "\n");
+                writer.println("[" + nickname + "]\n" + sendMessage + "\n");
                 writer.flush();
                 chattingInput.setText("");
             }
             if(e.getSource() == exitButton) {
-                writer.println("[" + nickname + " 님이 퇴장했습니다 ]");
+                writer.println("[ " + nickname + " 님이 퇴장했습니다 ]");
                 writer.flush();
                 System.exit(0);
             }

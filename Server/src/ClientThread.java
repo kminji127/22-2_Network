@@ -33,10 +33,11 @@ public class ClientThread extends Thread {
                 }
             }
         } catch (Exception e) {
-            System.out.println("[ " + socket.getInetAddress() +  "Exited ]");
-            Server.userList.remove(this);
+            e.printStackTrace();
         } finally {
             try {
+                System.out.println("[ " + socket.getInetAddress() +  " Exited ]");
+                Server.userList.remove(this);
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
