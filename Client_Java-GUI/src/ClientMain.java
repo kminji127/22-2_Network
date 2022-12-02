@@ -16,19 +16,24 @@ public class ClientMain extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
 
+        Font font_b = new Font("맑은 고딕", Font.BOLD, 20);
+        Font font_r = new Font("맑은 고딕", Font.PLAIN, 15);
+
         nicknamePanel = new JPanel();
         nicknamePanel.setBackground(new Color(255,255,255,100));
         nicknamePanel.setBorder(new EmptyBorder(40, 50, 40, 50));
         nicknamePanel.setLayout(null);
 
         alert = new JLabel("닉네임을 입력해주세요.");
+        alert.setFont(font_b);
         nicknameField = new JTextField(20);
         confirm = new JButton("확인");
+        confirm.setFont(font_r);
 
-        alert.setBounds(170, 50, 300, 40);
+        alert.setBounds(140, 50, 300, 40);
         nicknameField.setBounds(100, 100, 300, 40);
         confirm.setBounds(180, 170, 120, 50);
-        confirm.setBackground(new Color(217, 217, 217, 100));
+        confirm.setBackground(new Color(232, 203, 180, 100));
 
         nicknamePanel.add(alert);
         nicknamePanel.add(nicknameField);

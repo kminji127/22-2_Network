@@ -14,6 +14,7 @@ public class Client extends JFrame {
     JTextArea chattingDisplay = new JTextArea();
     JScrollPane jScrollPane = new JScrollPane(chattingDisplay);
     JTextField chattingInput = new JTextField(20);
+    Font font_r = new Font("맑은 고딕", Font.PLAIN, 15);
 
     PrintWriter writer;
     BufferedReader reader;
@@ -32,6 +33,14 @@ public class Client extends JFrame {
         setTitle("채팅");
         setSize(400, 600);
 
+        chattingDisplay.setFont(font_r);
+        chattingInput.setFont(font_r);
+        submitButton.setFont(font_r);
+        exitButton.setFont(font_r);
+
+        submitButton.setBackground(new Color(232, 203, 180, 100));
+        exitButton.setBackground(new Color(232, 203, 180, 100));
+
         chattingDisplay.setEditable(false);
         panel.setLayout(new BorderLayout());
         panel.add("Center", chattingInput);
@@ -48,7 +57,6 @@ public class Client extends JFrame {
         chattingInput.addActionListener(event);
 
         new Thread() {
-            @Override
             public void run() {
                 try {
                     Socket socket = new Socket("172.30.1.24", 8080);
