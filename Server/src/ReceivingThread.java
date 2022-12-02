@@ -8,8 +8,9 @@ public class ReceivingThread extends Thread {
 
     public ReceivingThread(Socket socket) throws Exception {
         this.socket = socket;
-//        DataInputStream input = new DataInputStream(socket.getInputStream());
-//        this.nickname = input.readUTF();
+        InputStream input = socket.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+        this.nickname = reader.readLine();
     }
 
     public void run() {
@@ -18,7 +19,7 @@ public class ReceivingThread extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             while(true) {
-                System.out.println(reader.readLine() + "\n");
+                System.out.println(reader.readLine());
             }
         } catch (Exception e) {
             e.printStackTrace();

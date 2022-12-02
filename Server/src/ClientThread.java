@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.Socket;
+import java.nio.Buffer;
+import java.util.Scanner;
 
 public class ClientThread extends Thread {
     Server server;
@@ -9,7 +11,8 @@ public class ClientThread extends Thread {
     BufferedReader reader;
     PrintWriter writer;
     String readValue;
-    String nickname;
+    static String nickname;
+    static Scanner scanner = new Scanner(System.in);
 
     public ClientThread(Server server, Socket socket) {
         this.server = server;
@@ -48,6 +51,13 @@ public class ClientThread extends Thread {
     public static void main(String[] args) throws Exception {
         try {
             Socket clientSoc = new Socket("172.30.1.24", 8080);
+
+            System.out.print("닉네임을 입력해주세요: ");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String data = reader.readLine();
+            DataOutputStream output = new DataOutputStream(clientSoc.getOutputStream());
+            PrintWriter pwrite = new PrintWriter(output, true);
+            pwrite.println(data);
 
             ReceivingThread receivingThread = new ReceivingThread(clientSoc);
             SendingThread sendingThread = new SendingThread(clientSoc);
