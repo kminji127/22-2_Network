@@ -24,7 +24,7 @@ public class EnterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 String username = editText.getText().toString();
-                intent.putExtra("username",username);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });

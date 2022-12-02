@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     InetAddress serverAddr = InetAddress.getByName(ip);
                     socket = new Socket(serverAddr, port);
                     sendWriter = new PrintWriter(socket.getOutputStream());
+                    sendWriter.println(username);
+                    sendWriter.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     while(true){
                         read = input.readLine();
