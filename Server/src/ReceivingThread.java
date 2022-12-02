@@ -1,13 +1,15 @@
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 
 public class ReceivingThread extends Thread {
     Socket socket = null;
+    String nickname;
 
-    public ReceivingThread(Socket socket) {
+
+    public ReceivingThread(Socket socket) throws Exception {
         this.socket = socket;
+//        DataInputStream input = new DataInputStream(socket.getInputStream());
+//        this.nickname = input.readUTF();
     }
 
     public void run() {
