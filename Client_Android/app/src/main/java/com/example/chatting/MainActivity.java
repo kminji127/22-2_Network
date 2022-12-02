@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         super.run();
                         try {
-                            sendWriter.println(UserID +">"+ sendmsg);
+                            sendWriter.println(sendmsg);
                             sendWriter.flush();
                             message.setText("");
                         } catch (Exception e) {
