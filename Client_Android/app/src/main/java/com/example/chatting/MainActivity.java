@@ -32,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
     Socket socket;
     PrintWriter sendWriter;
     private String ip = "192.168.35.15";
-    private int port = 9999;
+    private int port = 8080;
 
-    TextView textView;
-    String UserID;
+    String username;
     Button connectbutton;
     Button chatbutton;
     TextView chatView;
@@ -59,12 +58,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mHandler = new Handler();
-        textView = (TextView) findViewById(R.id.textView);
         chatView = (TextView) findViewById(R.id.chatView);
         message = (EditText) findViewById(R.id.message);
         Intent intent = getIntent();
-        UserID = intent.getStringExtra("username");
-        textView.setText(UserID);
+        username = intent.getStringExtra("username");
         chatbutton = (Button) findViewById(R.id.chatbutton);
 
         new Thread() {
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     InetAddress serverAddr = InetAddress.getByName(ip);
                     socket = new Socket(serverAddr, port);
                     sendWriter = new PrintWriter(socket.getOutputStream());
-                    sendWriter.println(username);
+                    sendWriter.println("[ " + username + " 님이 입장했습니다 ]");
                     sendWriter.flush();
                     BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     while(true){
@@ -99,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         super.run();
                         try {
-                            sendWriter.println(sendmsg);
+                            sendWriter.println(username + "\n" + sendmsg + "\n");
                             sendWriter.flush();
                             message.setText("");
                         } catch (Exception e) {
@@ -117,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            chatView.setText(chatView.getText().toString()+msg+"\n");
+            chatView.setText(chatView.getText().toString() + "\n" + username + "\n" + msg + "\n");
         }
     }
 }
