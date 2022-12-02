@@ -44,6 +44,7 @@ public class Client extends JFrame {
         container.add("South", panel);
 
         submitButton.addActionListener(event);
+        exitButton.addActionListener(event);
         chattingInput.addActionListener(event);
 
         new Thread() {
