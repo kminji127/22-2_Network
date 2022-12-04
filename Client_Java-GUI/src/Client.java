@@ -60,7 +60,7 @@ public class Client extends JFrame {
         new Thread() {
             public void run() {
                 try {
-                    Socket socket = new Socket("172.30.1.24", 8080);
+                    Socket socket = new Socket("192.168.35.15", 8080);
 
                     InputStream input = socket.getInputStream();
                     reader = new BufferedReader(new InputStreamReader(input));

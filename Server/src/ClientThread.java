@@ -27,8 +27,6 @@ public class ClientThread extends Thread {
             output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 
-            writer.println("접속 인원: " + Server.userList.size() + "명\n");
-
             while ((readValue = reader.readLine()) != null) {
                 for(int i=0; i<Server.userList.size(); i++) {
                     ClientThread clientThread = (ClientThread) Server.userList.get(i);
@@ -42,8 +40,7 @@ public class ClientThread extends Thread {
             try {
                 System.out.println("[ " + socket.getInetAddress() +  " Exited ]");
                 Server.userList.remove(this);
-                System.out.println("접속 인원: " + Server.userList.size() + "명\n");
-                writer.println("접속 인원: " + Server.userList.size() + "명\n");
+                System.out.println("There are(is) " + Server.userList.size() + " people.");
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -53,7 +50,7 @@ public class ClientThread extends Thread {
 
     public static void main(String[] args) throws Exception {
         try {
-            Socket clientSoc = new Socket("172.30.1.24", 8080);
+            Socket clientSoc = new Socket("192.168.35.15", 8080);
 
             System.out.print("닉네임을 입력해주세요: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
