@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             sendWriter.close();
                             Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
                             startActivity(intent);
+                            socket.close();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
