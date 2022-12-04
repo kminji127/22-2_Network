@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.Socket;
-import java.nio.Buffer;
 import java.util.Scanner;
 
 public class ClientThread extends Thread {
@@ -28,6 +27,8 @@ public class ClientThread extends Thread {
             output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 
+            writer.println("접속 인원: " + Server.userList.size() + "명\n");
+
             while ((readValue = reader.readLine()) != null) {
                 for(int i=0; i<Server.userList.size(); i++) {
                     ClientThread clientThread = (ClientThread) Server.userList.get(i);
@@ -41,6 +42,8 @@ public class ClientThread extends Thread {
             try {
                 System.out.println("[ " + socket.getInetAddress() +  " Exited ]");
                 Server.userList.remove(this);
+                System.out.println("접속 인원: " + Server.userList.size() + "명\n");
+                writer.println("접속 인원: " + Server.userList.size() + "명\n");
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -56,8 +59,8 @@ public class ClientThread extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String data = reader.readLine();
             DataOutputStream output = new DataOutputStream(clientSoc.getOutputStream());
-            PrintWriter pwrite = new PrintWriter(output, true);
-            pwrite.println(data);
+            PrintWriter writer = new PrintWriter(output, true);
+            writer.println(data);
 
             ReceivingThread receivingThread = new ReceivingThread(clientSoc);
             SendingThread sendingThread = new SendingThread(clientSoc);

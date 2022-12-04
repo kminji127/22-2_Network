@@ -19,6 +19,7 @@ public class Server {
                 Socket clientSoc = serverSoc.accept();
                 ClientThread clientThread = new ClientThread(this, clientSoc);
                 userList.add(clientThread);
+                System.out.println("접속 인원: " + userList.size() + "명\n");
                 clientThread.start();
             }
         } catch (IOException e) {
