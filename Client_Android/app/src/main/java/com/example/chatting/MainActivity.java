@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
                             sendWriter.println("[ " + username + " 님이 퇴장했습니다 ]");
                             sendWriter.flush();
                             sendWriter.close();
-                            socket.close();
                             Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
                             startActivity(intent);
                         } catch (Exception e) {
@@ -148,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             scroll.fullScroll(View.FOCUS_DOWN);
             TextView tv = new TextView(MainActivity.this);
-            //tv.setTextColor(Color.argb(1, 124, 72, 31));
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
             if(msg.startsWith("["+username+"]")){
                 tv.setTextColor(Color.parseColor("#7C481F"));
