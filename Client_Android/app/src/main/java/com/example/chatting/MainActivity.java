@@ -93,15 +93,22 @@ public class MainActivity extends AppCompatActivity {
         exitbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    sendWriter.println("[ " + username + " 님이 퇴장했습니다 ]");
-                    sendWriter.flush();
-                    sendWriter.close();
-                    socket.close();
-                    Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        super.run();
+                        try {
+                            sendWriter.println("[ " + username + " 님이 퇴장했습니다 ]");
+                            sendWriter.flush();
+                            sendWriter.close();
+                            socket.close();
+                            Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }.start();
             }
         });
 
@@ -120,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                    }
+                        }
                 }.start();
             }
         });

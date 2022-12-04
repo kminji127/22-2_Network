@@ -54,6 +54,7 @@
             android:layout_weight="9.5"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
+            android:background="@color/white"
             android:hint="메세지를 입력하세요" />
 
         <Button

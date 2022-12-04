@@ -18,6 +18,7 @@ public class EnterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enter);
         enterButton = (Button)findViewById(R.id.enterButton);
         editText = (EditText)findViewById(R.id.editText);
+        Intent intent = getIntent();
 
         enterButton.setOnClickListener(new View.OnClickListener() {
             @Override
