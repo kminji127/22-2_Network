@@ -3,6 +3,7 @@ package com.example.chatting;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private int port = 8080;
 
     String username;
-    Button connectbutton;
+    Button exitbutton;
     Button chatbutton;
     TextView chatView;
     EditText message;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         message = (EditText) findViewById(R.id.message);
         Intent intent = getIntent();
         username = intent.getStringExtra("username");
+        exitbutton = (Button) findViewById(R.id.exitbutton);
         chatbutton = (Button) findViewById(R.id.chatbutton);
 
         new Thread() {
@@ -87,6 +90,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }.start();
 
+        exitbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    sendWriter.println("[ " + username + " 님이 퇴장했습니다 ]");
+                    sendWriter.flush();
+                    sendWriter.close();
+                    socket.close();
+                    Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         chatbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         super.run();
                         try {
-                            sendWriter.println(username + "\n" + sendmsg + "\n");
+                            sendWriter.println("[" + username + "] " + sendmsg + "\n");
                             sendWriter.flush();
                             message.setText("");
                         } catch (Exception e) {
@@ -114,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run() {
-            chatView.setText(chatView.getText().toString() + "\n" + username + "\n" + msg + "\n");
+            chatView.setText(chatView.getText().toString() + msg + "\n");
         }
     }
 }
