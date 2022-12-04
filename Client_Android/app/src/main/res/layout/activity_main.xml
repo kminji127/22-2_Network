@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/white"
+        android:background="@color/brown"
         android:paddingVertical="10dp">
 
         <TextView
@@ -20,8 +20,9 @@
             android:layout_height="40dp"
             android:textAlignment="center"
             android:text="채팅방"
-            android:textColor="#7C481F"
-            android:textSize="30dp"/>
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textFontWeight="700"/>
 
         <Button
             android:id="@+id/exitbutton"
@@ -30,22 +31,31 @@
             android:layout_gravity="right"
             android:layout_marginRight="10dp"
             android:text="나가기"
-            android:background="@color/brown"
-            android:textColor="@color/white"
+            android:background="@color/white"
+            android:textColor="@color/brown"
+            android:textFontWeight="500"
             />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/chatView"
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"
-        android:background="@color/colorAccent"
-        android:textColor="@color/black" />
+        android:layout_weight="8"
+        android:background="@color/colorAccent">
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <EditText
@@ -54,8 +64,10 @@
             android:layout_weight="9.5"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
-            android:background="@color/white"
-            android:hint="메세지를 입력하세요" />
+            android:hint="메세지를 입력하세요"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/colorAccent"
+            android:textCursorDrawable="@drawable/text_cursor"/>
 
         <Button
             android:id="@+id/chatbutton"
@@ -63,8 +75,10 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="전송"
-            android:textColor="@color/white"
-            android:background="@color/textColor" />
+            android:textSize="20sp"
+            android:textColor="@color/brown"
+            android:background="@color/colorAccent"
+            android:textFontWeight="500"/>
 
     </LinearLayout>
 </LinearLayout>
