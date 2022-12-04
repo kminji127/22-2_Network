@@ -93,7 +93,7 @@ public class Client extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == chattingInput || e.getSource() == submitButton) {
                 sendMessage = chattingInput.getText();
-                writer.println("[" + nickname + "]\n" + sendMessage + "\n");
+                writer.println("[" + nickname + "] " + sendMessage + "\n");
                 writer.flush();
                 chattingInput.setText("");
             }
