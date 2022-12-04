@@ -33,7 +33,7 @@ public class ClientMain extends JFrame implements ActionListener {
         alert.setBounds(140, 50, 300, 40);
         nicknameField.setBounds(100, 100, 300, 40);
         confirm.setBounds(180, 170, 120, 50);
-        confirm.setBackground(new Color(232, 203, 180, 100));
+        confirm.setBackground(new Color(242, 216, 189,255));
 
         nicknamePanel.add(alert);
         nicknamePanel.add(nicknameField);

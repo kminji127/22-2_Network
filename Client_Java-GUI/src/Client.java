@@ -38,8 +38,9 @@ public class Client extends JFrame {
         submitButton.setFont(font_r);
         exitButton.setFont(font_r);
 
-        submitButton.setBackground(new Color(232, 203, 180, 100));
-        exitButton.setBackground(new Color(232, 203, 180, 100));
+        chattingDisplay.setBackground(new Color(242, 216, 189, 255));
+        submitButton.setBackground(new Color(242, 216, 189, 255));
+        exitButton.setBackground(new Color(242, 216, 189, 255));
 
         chattingDisplay.setEditable(false);
         panel.setLayout(new BorderLayout());
@@ -93,7 +94,7 @@ public class Client extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == chattingInput || e.getSource() == submitButton) {
                 sendMessage = chattingInput.getText();
-                writer.println("[" + nickname + "] " + sendMessage + "\n");
+                writer.println("[" + nickname + "] " + sendMessage);
                 writer.flush();
                 chattingInput.setText("");
             }
